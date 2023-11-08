@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup  from 'yup'
 
-function Cliente(){
+function Produto(){
 
     const schema = yup.object({
     nome:yup.string().required("Campo nome Obrigatório"),
@@ -108,4 +108,4 @@ function Cliente(){
     </>
   )
 }
-export default Cliente
+export default Produto

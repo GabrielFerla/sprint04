@@ -7,7 +7,7 @@ function Nav() {
       <nav className="headerMenu">
         <ul>
           <Link to="/" className="tlink">Home</Link> {''}
-          <Link to="/cliente" className="tlink">Cliente</Link>
+          <Link to="/produto" className="tlink">Produto</Link>
      
         </ul>
       </nav>
