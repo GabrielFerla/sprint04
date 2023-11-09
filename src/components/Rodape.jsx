@@ -5,7 +5,7 @@ import {FaGithub} from "react-icons/fa6";
 function Rodape() {
   return (
    
-      <section className="rodape">
+      <section className="rodape" className='ms-3'>
         <h3>@2023</h3>
         <FaFacebook className="redes" />
         <FaGithub className="redes"/>

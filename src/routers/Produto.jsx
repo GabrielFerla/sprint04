@@ -2,15 +2,18 @@ import {useState} from 'react'
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup  from 'yup'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';;
+
 
 function Produto(){
 
     const schema = yup.object({
     nome:yup.string().required("Campo nome Obrigatório"),
-    email:yup.string().email("Digite um email Válido")
-    .required("Campo email obrigatório"),
-    cpf:yup.string().min(11,'CPF deve conter 11 digitos')
-    .required("Campo cpf Obrigatório")
    })
    .required();
 
@@ -40,64 +43,93 @@ function Produto(){
 
    }
 
-
   return(
     <>
-    <form onSubmit={handleSubmit(inserirCLientes)}>
-      <fieldset>
-        <legend>Dados Pessoais:</legend>:
-        <label>
-          Nome:
-          <input type="text" {...register('nome')}/>
-          <span>{errors.nome?.message}</span>
-        </label>
+    <form onSubmit={handleSubmit(inserirCLientes)} >
+      <fieldset className='ms-3'>
+        <legend>Cadastro de Produto</legend>
+        <Row className='pt-3'>
+          <Col>
+            <Form.Group>
+              <Form.Label>Digite o nome do produto</Form.Label>
+              <Form.Control {...register('nome')} type="text" 
+                            placeholder="Digite o nome do produto" />       
+            </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group>
+            <Form.Label>Digite o valor do produto</Form.Label>
+            <Form.Control {...register('valor')} type="text" 
+                          placeholder="Digite o valor do produto" />       
+          </Form.Group>
+        </Col>
 
-        <label>
-          Email:
-          <input type="text" {...register('email')}/>
-          <span>{errors.email?.message}</span>
-        </label>
-
-        <label>
-          Cpf:
-          <input type="text" {...register('cpf')}/>
-          <span>{errors.cpf?.message}</span>
-        </label>
-    
+        <Col>
+          <Form.Group>
+            <Form.Label>Digite a marca do produto</Form.Label>
+            <Form.Control {...register('marca')} type="text" 
+                          placeholder="Digite a marca do produto" />       
+          </Form.Group>
+        </Col>
+        </Row>
+        <Form.Group className="mt-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Digite a descrisção</Form.Label>
+          <Form.Control {...register('descriscao')} as="textarea" placeholder="Digite a descrisção" rows={2
+          } />
+      </Form.Group>
+       
       </fieldset>
-      <fieldset>
-        <legend>Dados Endereço:</legend>
-        <label>
-          Cep:
-          <input type="text" {...register('cep')} onBlur={buscarCep} />
-        </label>
-        <label>
-          Rua:
-          <input type="text" {...register('rua')}/>
-        </label>
+      <fieldset className='ms-3'>
+      <legend>Dados Do Comprador:</legend>
+        <Row className='pt-3'>
 
-        <label>
-          Numero:
-          <input type="text" {...register('numero')}/>
-        </label>
-        <label>
-          Bairro:
-          <input type="text" {...register('bairro')}/>
-        </label>
-        <label>
-          Cidade:
-          <input type="text" {...register('cidade')}/>
-        </label>
-        <button type="submit">Cadastrar</button>
-        <button type="reset">limpar</button>
+        <Col>
+          <Form.Group className="mt-3">
+            <Form.Label>CEP: </Form.Label>
+            <Form.Control {...register('cep')} onBlur={buscarCep} type="text" placeholder="Digite o cep"/>
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group className="mt-3">
+            <Form.Label>Rua: </Form.Label>
+            <Form.Control {...register('rua')} type="text" placeholder="Digite o cep"/>
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group className="mt-3">
+            <Form.Label>Numero: </Form.Label>
+            <Form.Control {...register('numero')} type="text" placeholder="Digite o numero"/>
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group className="mt-3">
+            <Form.Label>Bairro: </Form.Label>
+            <Form.Control {...register('bairro')} type="text" placeholder="Digite o bairro"/>
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group className="mt-3">
+            <Form.Label>Cidade: </Form.Label>
+            <Form.Control {...register('cidade')} type="text" placeholder="Digite a cidade"/>
+          </Form.Group>
+        </Col>
+
+        </Row>
+        <Row>
+          <Col>
+            <Button size="sm" variant="success" type="submit" className='mx-3' >Cadastrar</Button>
+            <Button size="sm" variant="success" type="reset">limpar</Button>
+          </Col>
+        </Row>
       </fieldset>
     </form>
-    <div>
+    <div className='mb-3'>
       {listaClientes.map((cli,index)=>(
           <div  key={index}>    
           <p>Nome:{cli.nome}</p>
-          <p>Email:{cli.email}</p>
-          <p>CPF:{cli.cpf}</p>
+          <p>Descrisção:{cli.descriscao}</p>
+          <p>Valor:{cli.valor}</p>
+          <p>Quantidade:{cli.qtd}</p>
           <p>Rua:{cli.rua}</p>
           <p>Bairro:{cli.bairro}</p>
           <p>Cidade:{cli.cidade}</p>
