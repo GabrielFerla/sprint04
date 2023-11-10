@@ -7,7 +7,8 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';;
+import Row from 'react-bootstrap/Row';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
 function Produto(){
@@ -116,25 +117,82 @@ function Produto(){
 
         </Row>
         <Row>
-          <Col>
+          <Col className='my-3'>
             <Button size="sm" variant="success" type="submit" className='mx-3' >Cadastrar</Button>
             <Button size="sm" variant="success" type="reset">limpar</Button>
           </Col>
         </Row>
       </fieldset>
     </form>
-    <div className='mb-3'>
+    <div className='mb-3 mx-3'>
       {listaClientes.map((cli,index)=>(
-          <div  key={index}>    
-          <p>Nome:{cli.nome}</p>
-          <p>Descrisção:{cli.descriscao}</p>
-          <p>Valor:{cli.valor}</p>
-          <p>Quantidade:{cli.qtd}</p>
-          <p>Rua:{cli.rua}</p>
-          <p>Bairro:{cli.bairro}</p>
-          <p>Cidade:{cli.cidade}</p>
-        </div>
-       
+        <>
+            <ListGroup as="ol" className='my-3'>
+              <ListGroup.Item
+                as="li"
+                className="d-flex justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Nome</div>
+                  {cli.nome}
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item
+                as="li"
+                className="d-flex justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Descrisção</div>
+                  {cli.descriscao}
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item
+                as="li"
+                className="d-flex justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Valor</div>
+                  R$ : {cli.valor}
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item
+                as="li"
+                className="d-flex justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Marca</div>
+                  {cli.marca}
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item
+                as="li"
+                className="d-flex justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Rua </div>
+                  {cli.rua}
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item
+                as="li"
+                className="d-flex justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Bairro</div>
+                  {cli.bairro}
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item
+                as="li"
+                className="d-flex justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Cidade</div>
+                  {cli.cidade}
+                </div>
+              </ListGroup.Item>
+              </ListGroup>
+              </>
       ))}
     </div>
     </>
